@@ -19,7 +19,7 @@ for i=1:length(A(:,1)) %recorro files
         A(2,4)=a(2)
         A(3,4)=a(3)
     elseif i>4 % posem 1 de manera random en posicions de la nostra matiu. tenint en compte que no es possible tenir un 1 en una fila si no esta mes enlla de la columna igual el numero de fila
-        l=5
+        l=5 %el 5 es perque en la porta 4 hi ha els cables llavors a partir de la 5ena posem els cables randoms ja uqe en la 4 ho hem fet anteriormet
         for k=1:l
             if l<puertas+3
                 A(k,l)=randi(0:1)
