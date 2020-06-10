@@ -2,7 +2,7 @@ function [pob]=poblacio(portes,poblacio)
 n=1;
 pob=[];
 %portes=8
-while n<=20 %el 20 aquest sera la mida de la població
+while n<=poblacio %el 20 aquest sera la mida de la població
     A=zeros(portes+3,portes+3);
    
 for i=1:length(A(:,1)) %recorro files
@@ -22,7 +22,7 @@ for i=1:length(A(:,1)) %recorro files
         l=5 %el 5 es perque en la porta 4 hi ha els cables llavors a partir de la 5ena posem els cables randoms ja uqe en la 4 ho hem fet anteriormet
         for k=1:l
             if l<portes+3
-                A(k,l)=randi(0:1)
+                A(k,l)=round(randi(1))
             end
             l=l+1
         end

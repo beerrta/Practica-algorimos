@@ -11,7 +11,7 @@ for j=1:length(A(:,1)) %recorro les columnes
     if sum(A(:,j))>0
         portes=portes+1;
     end
-    cost=portes+cables;
+    cost=(portes)*3+cables;
 end
     input=[0,0,0;0,0,1;0,1,0;0,1,1;1,0,0;1,0,1;1,1,0;1,1,1];
     % per aixi no modificar directament la matiru de la poblacio creo una matriu alterantiva 
@@ -50,6 +50,6 @@ end
             out(i)=solucio_porta_ant(length(solucio_porta_ant));
 
     end     
-   hamming=sum(abs(out-obj)); %definicio de la distancia de hamming 
+   hamming=sum(abs(out-obj))*10; %definicio de la distancia de hamming 
    fitness=cost+hamming;
 end
