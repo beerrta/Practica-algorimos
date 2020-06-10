@@ -4,15 +4,21 @@ function mutated=mutation(A,portes,mutrate)
 %columnes ja uque aquestes sempre seran 0
 for m=4:length(A(:,1))%recorro les columnes de la matriu
     for n=1:length(A(1,:))
-        r=rand(1)
-        if r<mutrate && m>n
+        r1=rand(1)
+        r2=rand(1)
+        
+        if r1<mutrate && m>n
             if A(n,m)==0
-                A(n,m)==1
-            else
                 A(n,m)==1
             end
         end
-    end
+        if  r2<mutrate && m>n
+            if A(n,m)==1
+                A(n,m)==0
+            end
+        end
+        end
 end
-mutated=A
+    mutated=A
 end
+
