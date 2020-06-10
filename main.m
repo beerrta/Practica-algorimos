@@ -13,7 +13,7 @@ mincost= 0; % minimum cost
 portes=6;
 %_______________________________________________________
 % III GA parameters
-popsize = 50; % set population size
+popsize = 100; % set population size
 selection = 0.5; % fraction of population kept
 %Nt=npar; % continuous parameter GA Nt=#variables
 %keep=floor(selection*popsize); % #population memberst that survive
