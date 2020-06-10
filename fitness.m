@@ -49,8 +49,7 @@ end
             end
             out(i)=solucio_porta_ant(length(solucio_porta_ant));
 
-    end
-   %obj=[0,0,0,1,0,1,0,1]        
+    end     
    hamming=sum(abs(out-obj)); %definicio de la distancia de hamming 
    fitness=cost+hamming;
 end

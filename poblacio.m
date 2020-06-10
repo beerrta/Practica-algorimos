@@ -1,7 +1,7 @@
 function [pob]=poblacio(portes,poblacio)
 n=1;
 pob=[];
-%puertas=8
+%portes=8
 while n<=20 %el 20 aquest sera la mida de la població
     A=zeros(portes+3,portes+3);
    
@@ -31,6 +31,7 @@ for i=1:length(A(:,1)) %recorro files
 end
 pob(:,:,n)=A
 n=n+1
+end
 end
         
 
