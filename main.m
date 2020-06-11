@@ -8,17 +8,13 @@ obj=[0,0,0,1,0,1,0,1];
 % obj=[0,1,1,1,0,0,0,1]
 
 
-maxit=600; % max number of iterations
+maxit=70; % max number of iterations
 mincost= 0; % minimum cost
 portes=6;
 %_______________________________________________________
 % III GA parameters
-popsize = 100; % set population size
+popsize = 160; % set population size
 selection = 0.5; % fraction of population kept
-%Nt=npar; % continuous parameter GA Nt=#variables
-%keep=floor(selection*popsize); % #population memberst that survive
-%nmut=ceil((popsize-1)*Nt*mutrate); % total number of mutations
-%M=ceil((popsize-keep)/2); % number of matings
 poblacio=poblacio(portes,popsize);
 mutrate=1/portes^2
 %_______________________________________________________
