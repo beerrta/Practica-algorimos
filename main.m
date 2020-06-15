@@ -8,15 +8,15 @@ obj=[1,1,0,0,0,0,0,1];
 %obj=[0,1,1,1,0,0,0,1]
 
 
-maxit=1400; % max number of iterations
+maxit=2000; % max number of iterations
 mincost= 1; % minimum cost
-portes=8;
+portes=7;
 %_______________________________________________________
 % III GA parameters
-popsize = 800; % set population size
+popsize = 600; % set population size
 selection = 0.5; % fraction of population kept
 poblacio=poblacions(portes,popsize);
-mutrate=0.15;
+mutrate=1/portes;
 %_______________________________________________________
 % Create the initial population
 iga=0; % generation counter initialized
