@@ -3,20 +3,20 @@ clear all
 % objective function
 ff= 'fitness'; 
 %obj=[0,0,0,1,0,1,0,1];
-obj=[1,1,0,0,0,0,0,1];
+%obj=[1,1,0,0,0,0,0,1];
 %obj=[0,1,1,0,0,0,0,1]
-%obj=[0,1,1,1,0,0,0,1]
+obj=[0,1,1,1,0,0,0,1]
 
 
 maxit=1500; % max number of iterations
 mincost= 1; % minimum cost
-portes=6;
+portes=7;
 %_______________________________________________________
 % III GA parameters
 popsize = 600; % set population size
 selection = 0.5; % fraction of population kept
 poblacio=poblacions(portes,popsize);
-mutrate=1/portes^2;
+mutrate=1/portes;
 %_______________________________________________________
 % Create the initial population
 iga=0; % generation counter initialized
@@ -45,7 +45,7 @@ while iga<maxit
      poblacio(:,:,i)=descendencia(:,:,i);
  end
  
-% %Ordenado posterior a recombinacion
+% Ordenado posterior a recombinacion
  for i=1:popsize
  cost(i)=fitness(poblacio(:,:,i),obj);
  end
@@ -93,6 +93,6 @@ disp('continuous genetic algorithm')
 figure(1)
 iters=0:length(minc)-1;
 plot(iters,minc,iters,meanc,'-');
-xlabel('generation'); ylabel('cost');
+xlabel('generation'); ylabel('Fitness');
 % text(0,minc(1),'best');
 % text(1,minc(2),'population average');
