@@ -3,20 +3,20 @@ clear all
 % objective function
 ff= 'fitness'; 
 obj=[0,0,0,1,0,1,0,1];
-%obj=[1,1,0,0,0,0,0,1]
-% obj=[0,1,1,0,0,0,0,1]
-% obj=[0,1,1,1,0,0,0,1]
+%obj=[1,1,0,0,0,0,0,1];
+%obj=[0,1,1,0,0,0,0,1]
+%obj=[0,1,1,1,0,0,0,1]
 
 
-maxit=70; % max number of iterations
-mincost= 0; % minimum cost
-portes=6;
+maxit=200; % max number of iterations
+mincost= 1; % minimum cost
+portes=5;
 %_______________________________________________________
 % III GA parameters
-popsize = 160; % set population size
+popsize = 200; % set population size
 selection = 0.5; % fraction of population kept
-poblacio=poblacio(portes,popsize);
-mutrate=1/portes^2
+poblacio=poblacions(portes,popsize);
+mutrate=1/portes^2;
 %_______________________________________________________
 % Create the initial population
 iga=0; % generation counter initialized
@@ -29,43 +29,47 @@ minc(1)=min(cost); % minc contains the minimum of population
 meanc(1)=mean(cost); % meanc contains average fitness of population
 %_______________________________________________________
 % Iterate through generations (MAIN LOOP)
+m_poblacio(:,:,1)=poblacio(:,:,1);
 while iga<maxit
  iga=iga+1; % increments generation counter
 
  % Pair and mate
  %Performs mating using the single point crossover
  % ---------------------------------------------------
+ fittest=poblacio(:,:,1:length(poblacio)*selection);
  descendencia=recombinacio(poblacio,portes); %em retorna la desendencia dels aparellaments aleatoris
- x=length(poblacio)*selection
- selecio=[]
- for i=1:x
-     selecio(:,:,i)=poblacio(:,:,i)
+ for i = 1: length(fittest(:,:,1))
+     poblacio(:,:,i)=fittest(:,:,i);
  end
- for j=1:popsize/2
-     selecio(:,:,popsize/2+j)=descendencia(:,:,j)
+ for i = length(descendencia(:,:,1))*2: length(descendencia(:,:,1))*2
+     poblacio(:,:,i)=descendencia(:,:,i);
  end
- poblacio=selecio %creo la nova poblacio amb els mes fits de la generacio anteroro i els desencdents
-
- % Mutate the population
- % ---------------------------------------------------
-m_poblacio=[]
- for ii=1:length(poblacio)
-    m_poblacio(:,:,ii)=mutacio(poblacio(:,:,ii),portes,mutrate);% mutation
- end
- poblacio=m_poblacio
- % The new offspring and mutated chromosomes are evaluated
- % ---------------------------------------------------
- % cost=feval(ff,par); & WHY THIS IS NOT WORKING!!!!
+ 
+% %Ordenado posterior a recombinacion
  for i=1:popsize
  cost(i)=fitness(poblacio(:,:,i),obj);
  end
- % Sort the costs and associated parameters
+[cost,ind]=sort(cost);
+poblacio=poblacio(:,:,ind); % sort continuous
+
+ %Mutate the population
+% ---------------------------------------------------
+no_mut=poblacio
+ for ii=1:length(poblacio)
+    poblacio(:,:,ii)=mutacio(no_mut(:,:,ii),portes,mutrate);% mutatio
+ end
+ if fitness(poblacio(:,:,1),obj)>fitness(no_mut(:,:,1),obj)
+    poblacio(:,:,1)= no_mut(:,:,1)
+ end
+ 
+ % Thenew offspring and mutated chromosomes are evaluated
  % ---------------------------------------------------
- [cost,ind]=sort(cost);
- poblacio=poblacio(:,:,ind);
- %Coords{iga+1}=par;
- % Do statistics for a single nonaveraging run
- % ---------------------------------------------------
+ % cost=feval(ff,par); & WHY THIS IS NOT WORKING!!!!
+  for h=1:popsize
+ cost(h)=fitness(poblacio(:,:,h),obj);
+ end
+[cost,ind]=sort(cost);
+poblacio=poblacio(:,:,ind);
  minc(iga+1)=min(cost);
  meanc(iga+1)=mean(cost);
 
