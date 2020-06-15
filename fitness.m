@@ -12,7 +12,7 @@ portes=0;
                   if sum(B(:,m))==0 && sum(B(n,:))==0
                       B(:,m)=[];
                         B(n,:)=[];
-                  elseif sum(B(:,m))>=1 && sum(B(n,:))==0%elimino aquells portes que els seus outputs no van a para a ninguna porta aixi no tenen cap cost
+                  elseif sum(B(:,m))>=1 && sum(B(n,:))==0 && m~=length(B(:,1))%elimino aquells portes que els seus outputs no van a para a ninguna porta aixi no tenen cap cost, expete la ultima
                       B(:,m)=[];
                       B(n,:)=[];
                   end

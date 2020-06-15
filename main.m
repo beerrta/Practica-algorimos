@@ -8,9 +8,9 @@ obj=[1,1,0,0,0,0,0,1];
 %obj=[0,1,1,1,0,0,0,1]
 
 
-maxit=2000; % max number of iterations
+maxit=1500; % max number of iterations
 mincost= 1; % minimum cost
-portes=7;
+portes=6;
 %_______________________________________________________
 % III GA parameters
 popsize = 600; % set population size
@@ -55,19 +55,17 @@ poblacio=poblacio(:,:,ind); % sort continuous
  %Mutate the population
 % ---------------------------------------------------
 no_mut=poblacio
-% m_poblacio=mutacio(poblacio(:,:,1),portes,mutrate);
-%  if fitness(poblacio(:,:,1),obj)>fitness(m_poblacio,obj)
-%  poblacio(:,:,1)= m_poblacio(:,:,1);
-%  end
  for ii=1:length(poblacio)
     poblacio(:,:,ii)=mutacio(no_mut(:,:,ii),portes,mutrate);% mutatio
  end
-    poblacio(:,:,1)= no_mut(:,:,1);
+ if fitness(poblacio(:,:,1),obj)>fitness(no_mut(:,:,1),obj)
+    poblacio(:,:,1)= no_mut(:,:,1)
+ end
  
  % Thenew offspring and mutated chromosomes are evaluated
  % ---------------------------------------------------
  % cost=feval(ff,par); & WHY THIS IS NOT WORKING!!!!
- for h=1:popsize
+  for h=1:popsize
  cost(h)=fitness(poblacio(:,:,h),obj);
  end
 [cost,ind]=sort(cost);
