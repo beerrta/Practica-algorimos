@@ -16,7 +16,7 @@ portes=6;
 popsize = 600; % set population size
 selection = 0.5; % fraction of population kept
 poblacio=poblacions(portes,popsize);
-mutrate=1/portes;
+mutrate=1/portes^2;
 %_______________________________________________________
 % Create the initial population
 iga=0; % generation counter initialized
